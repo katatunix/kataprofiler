@@ -1,0 +1,49 @@
+- DXT texture [DONE]
+- ATC texture
+//- Texture target CUBE_MAP
+- GUI [DONE]
+- VBO [DONE]
+- Vertex data [DONE]
+- When user select a glDraw***, which textures are used in that glDraw*** ? [DONE]
+//- When user select a texture, which glDraw***(s) are use that texture ?
+- Active texture unit [DONE]
+- glGet***: current using program, current binding VBO target, current binding texture target [DONE]
+- glTex(Sub)Image2D(target = ?????????????)
+	+ which texture is affected? [DONE]
+	+ glPixelStorei [DONE]
+        
+//- glReadPixels with queying framebuffer state
+
+- Make state machine until a command index for program with glUniform*** [DONE]
+
+//- nomalized = GL_TRUE/GL_FALSE in glVertexAttribPointer
+
+//- transpose in glUniformMatrix(234)fv
+
+- Validate all gl calls to avoid crash/freeze
+
+- Total size, ... of textures/programs/vbos, and of Render calls, ...
+
+- Shader Compiler optimizer problem [DONE]
+
+- ListView item too long
+
+- Zoom too big screen shot (50%, 25%) [DONE]
+
+//- Fast Bitmap (intPtr) for GL_ALPHA, ...
+
+- Add column to group current tex id, prog id, vbo id [DONE]
+
+//- Send to client directly, not use buffer
+
+- [C#] KPMessage.toString() full
+
+- Time out socket [DONE]
+
+- GL_DEPTH_COMPONENT for OES_depth_texture
+
+- gl2.getString() in C# code
+
+- show all glGet***() in client
+
+- adb / sdb (start-server hang out)

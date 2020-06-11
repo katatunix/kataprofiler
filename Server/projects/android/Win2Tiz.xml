@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Makefile>
+
+	<Solution Path="../win32/kpserver.sln" />
+	
+	<CommonGccConfig>
+		
+		<GccConfig Name="armeabi-v7a">
+			<Macro Name="MAIN_PROJECT" 			Value="" />
+			<Macro Name="GENERATE_DSYM"			Value="False" />
+			<Macro Name="STRIP_DEBUG_SYMBOLS_FOR_RELEASE"	Value="True" />
+			<Macro Name="STRIP_DEBUG_SYMBOLS_FOR_DEBUG"		Value="False" />
+				
+			<Macro Name="ANDROID_NDK_PATH" 		Value="$(ANDROID_NDK_HOME)" />
+			<Macro Name="ANDROID_PLATFORM" 		Value="android-$(NATIVE_API_LEVEL)" />
+			<Macro Name="TOOLCHAIN_VERSION"		Value="4.9" />
+			<Macro Name="TOOLCHAIN_FOLDERNAME"	Value="arm-linux-androideabi-$(TOOLCHAIN_VERSION)" />
+			
+			<Macro Name="TOOLCHAIN" 			Value="$(ANDROID_NDK_PATH)\toolchains\$(TOOLCHAIN_FOLDERNAME)\prebuilt\windows\bin" />
+			
+			<Macro Name="TOOLCHAIN_PREFIX"		Value="arm-linux-androideabi" />
+			<Macro Name="CPP" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-g++.exe" />
+			<Macro Name="CC" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-gcc.exe" />
+			<Macro Name="LD" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-g++.exe" />
+			<Macro Name="LS" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-ar.exe" />
+			<Macro Name="OBJCOPY"		Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-objcopy.exe" />
+			<Macro Name="STRIP"			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-strip.exe" />
+			
+			<Macro Name="COMPILE_CPP_COMMAND_LINE" 	Value="$(CPP) $(DEFINES) $(CFLAGS) $(INCLUDE_PATHS) -c $(SRC_FILE) -o $(OBJ_FILE)" />
+			<Macro Name="COMPILE_CC_COMMAND_LINE" 	Value="$(CC) $(DEFINES) $(CFLAGS) $(INCLUDE_PATHS) -c $(SRC_FILE) -o $(OBJ_FILE)" />
+			<Macro Name="DYNAMIC_LINK_COMMAND_LINE" Value="$(LD) -Wl,-soname,$(OUT) -shared $(OBJ_FILES) $(LDLIBS)  $(LDFLAGS) $(LINK_PATHS) -o $(OUT)" />
+			<Macro Name="STATIC_LINK_COMMAND_LINE" 	Value="$(LS) -r -s $(OUT) $(OBJ_FILES)" />
+			<Macro Name="EXE_LINK_COMMAND_LINE" 	Value="$(LD) $(OBJ_FILES) $(LDLIBS)  $(LDFLAGS) $(LINK_PATHS) -o $(OUT)" />
+			<Macro Name="DSYM_COMMAND_LINE" 		Value="$(OBJCOPY) --only-keep-debug $(INPUT) $(OUT)" />
+			<Macro Name="STRIP_COMMAND_LINE" 		Value="$(STRIP) --strip-debug --strip-unneeded $(INPUT)" />
+			
+			<Macro Name="TYPES_OF_FILES_TO_BE_COMPILED"	Value="cpp;cc;c" />
+			
+			<Macro Name="DEFINES" 	CommonValue="OS_ANDROID"
+									DebugValue="_DEBUG"
+									ReleaseValue=""	/>
+									
+			<Macro Name="CFLAGS" 	CommonValue="	-mandroid 
+			  -ffunction-sections 
+			  -funwind-tables 
+			  -fstack-protector 
+			  -fpic 
+			  -Wno-psabi 
+			  -march=armv7-a 
+			  -mfpu=vfpv3-d16 
+			  -mfloat-abi=softfp 
+			  -Wno-write-strings 
+			  -fsigned-char 
+			  -fno-exceptions 
+			  -fno-rtti 
+			  -fomit-frame-pointer 
+			  -fno-strict-aliasing 
+			  -finline-limit=300 
+			  -ffast-math 
+			  -pipe  
+													"
+				DebugValue="-g"
+				ReleaseValue="-w -fomit-frame-pointer -Os -O2"	/>
+				
+			<Macro Name="INCLUDE_PATHS" CommonValue="
+													 $(ANDROID_NDK_PATH)\sysroot\usr\include
+													 $(ANDROID_NDK_PATH)\sysroot\usr\include\$(TOOLCHAIN_PREFIX)
+													 "
+										DebugValue=""
+										ReleaseValue=""	/>
+			
+			<Macro Name="LDLIBS" Value="" />
+			
+			<Macro Name="LDFLAGS" 	CommonValue="" 
+									DebugValue=""
+									ReleaseValue=""	/>
+									
+			<Macro Name="LINK_PATHS" Value="" />
+		</GccConfig>
+		
+		<GccConfig Name="x86">
+	
+			<Macro Name="MAIN_PROJECT" 			Value="" />
+			<Macro Name="GENERATE_DSYM"			Value="False" />
+			<Macro Name="STRIP_DEBUG_SYMBOLS_FOR_RELEASE"	Value="True" />
+			<Macro Name="STRIP_DEBUG_SYMBOLS_FOR_DEBUG"		Value="False" />
+			<Macro Name="ANDROID_NDK_PATH" 		Value="$(ANDROID_NDK_HOME)" />
+			<Macro Name="ANDROID_PLATFORM" 		Value="android-$(NATIVE_API_LEVEL)" />
+			
+			<Macro Name="TOOLCHAIN_VERSION"		Value="4.9" />
+			<Macro Name="TOOLCHAIN_FOLDERNAME"	Value="x86-$(TOOLCHAIN_VERSION)" />
+			
+			<Macro Name="TOOLCHAIN" 			Value="$(ANDROID_NDK_PATH)\toolchains\$(TOOLCHAIN_FOLDERNAME)\prebuilt\windows\bin" />
+			
+			<Macro Name="TOOLCHAIN_PREFIX"		Value="i686-linux-android" />
+			<Macro Name="CPP" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-g++.exe" />
+			<Macro Name="CC" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-gcc.exe" />
+			<Macro Name="LD" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-g++.exe" />
+			<Macro Name="LS" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-ar.exe" />
+			<Macro Name="OBJCOPY"		Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-objcopy.exe" />
+			<Macro Name="STRIP"			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-strip.exe" />
+			
+			<Macro Name="COMPILE_CPP_COMMAND_LINE" 	Value="$(CPP) $(DEFINES) $(CFLAGS) $(INCLUDE_PATHS) -c $(SRC_FILE) -o $(OBJ_FILE)" />
+			<Macro Name="COMPILE_CC_COMMAND_LINE" 	Value="$(CC) $(DEFINES) $(CFLAGS) $(INCLUDE_PATHS) -c $(SRC_FILE) -o $(OBJ_FILE)" />
+			<Macro Name="DYNAMIC_LINK_COMMAND_LINE" Value="$(LD) -Wl,-soname,$(OUT) -shared $(OBJ_FILES) $(LDLIBS)  $(LDFLAGS) $(LINK_PATHS) -o $(OUT)" />
+			<Macro Name="STATIC_LINK_COMMAND_LINE" 	Value="$(LS) -r -s $(OUT) $(OBJ_FILES)" />
+			<Macro Name="EXE_LINK_COMMAND_LINE" 	Value="$(LD) $(OBJ_FILES) $(LDLIBS)  $(LDFLAGS) $(LINK_PATHS) -o $(OUT)" />
+			<Macro Name="DSYM_COMMAND_LINE" 		Value="$(OBJCOPY) --only-keep-debug $(INPUT) $(OUT)" />
+			<Macro Name="STRIP_COMMAND_LINE" 		Value="$(STRIP) --strip-debug --strip-unneeded $(INPUT)" />
+
+			<Macro Name="TYPES_OF_FILES_TO_BE_COMPILED"	Value="cpp;cc;c" />
+			
+			<Macro Name="DEFINES" 	CommonValue="OS_ANDROID"
+									DebugValue="_DEBUG"
+									ReleaseValue=""	/>
+
+			<Macro Name="CFLAGS" 	CommonValue="	
+													-fsigned-char
+													"
+									DebugValue="-g"
+									ReleaseValue="-w -O3"	/>
+									
+			<Macro Name="INCLUDE_PATHS" CommonValue="
+													$(ANDROID_NDK_PATH)\sysroot\usr\include
+													$(ANDROID_NDK_PATH)\sysroot\usr\include\$(TOOLCHAIN_PREFIX)"
+										DebugValue=""
+										ReleaseValue=""	/>
+			
+			<Macro Name="LDLIBS" Value="" />
+			
+			<Macro Name="LDFLAGS" 	CommonValue="" 
+									DebugValue=""
+									ReleaseValue=""	/>
+							
+			<Macro Name="LINK_PATHS" Value="" />
+		</GccConfig>
+		   
+		<GccConfig Name="armeabi">
+	
+			<Macro Name="MAIN_PROJECT" 			Value="" />
+			<Macro Name="GENERATE_DSYM"			Value="False" />
+			<Macro Name="STRIP_DEBUG_SYMBOLS_FOR_RELEASE"	Value="True" />
+			<Macro Name="STRIP_DEBUG_SYMBOLS_FOR_DEBUG"		Value="False" />
+			
+			<Macro Name="ANDROID_NDK_PATH" 		Value="$(ANDROID_NDK_HOME)" />
+			<Macro Name="ANDROID_PLATFORM" 		Value="android-$(NATIVE_API_LEVEL)" />
+			<Macro Name="TOOLCHAIN_VERSION"		Value="4.9" />
+			<Macro Name="TOOLCHAIN_FOLDERNAME"	Value="arm-linux-androideabi-$(TOOLCHAIN_VERSION)" />
+			<Macro Name="TOOLCHAIN" 			Value="$(ANDROID_NDK_PATH)\toolchains\$(TOOLCHAIN_FOLDERNAME)\prebuilt\windows\bin" />
+			
+			<Macro Name="TOOLCHAIN_PREFIX"		Value="arm-linux-androideabi" />
+			<Macro Name="CPP" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-g++.exe" />
+			<Macro Name="CC" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-gcc.exe" />
+			<Macro Name="LD" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-g++.exe" />
+			<Macro Name="LS" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-ar.exe" />
+			<Macro Name="OBJCOPY"		Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-objcopy.exe" />
+			<Macro Name="STRIP"			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-strip.exe" />
+			
+			<Macro Name="COMPILE_CPP_COMMAND_LINE" 	Value="$(CPP) $(DEFINES) $(CFLAGS) $(INCLUDE_PATHS) -c $(SRC_FILE) -o $(OBJ_FILE)" />
+			<Macro Name="COMPILE_CC_COMMAND_LINE" 	Value="$(CC) $(DEFINES) $(CFLAGS) $(INCLUDE_PATHS) -c $(SRC_FILE) -o $(OBJ_FILE)" />
+			<Macro Name="DYNAMIC_LINK_COMMAND_LINE" Value="$(LD) -Wl,-soname,$(OUT) -shared $(OBJ_FILES) $(LDLIBS)  $(LDFLAGS) $(LINK_PATHS) -o $(OUT)" />
+			<Macro Name="STATIC_LINK_COMMAND_LINE" 	Value="$(LS) -r -s $(OUT) $(OBJ_FILES)" />
+			<Macro Name="EXE_LINK_COMMAND_LINE" 	Value="$(LD) $(OBJ_FILES) $(LDLIBS)  $(LDFLAGS) $(LINK_PATHS) -o $(OUT)" />
+			<Macro Name="DSYM_COMMAND_LINE" 		Value="$(OBJCOPY) --only-keep-debug $(INPUT) $(OUT)" />
+			<Macro Name="STRIP_COMMAND_LINE" 		Value="$(STRIP) --strip-debug --strip-unneeded $(INPUT)" />
+
+			<Macro Name="TYPES_OF_FILES_TO_BE_COMPILED"	Value="cpp;cc;c" />
+			
+			<Macro Name="DEFINES" 	CommonValue="OS_ANDROID"
+									DebugValue="_DEBUG"
+									ReleaseValue=""	/>
+			
+			<Macro Name="CFLAGS" 	CommonValue="	-mandroid 
+			  -ffunction-sections 
+			  -funwind-tables 
+			  -fstack-protector 
+			  -fpic 
+			  -Wno-psabi 
+			  -march=armv6
+			  -mfpu=vfpv3-d16 
+			  -mfloat-abi=softfp 
+			  -Wno-write-strings 
+			  -fsigned-char 
+			  -fno-exceptions 
+			  -fno-rtti 
+			  -fomit-frame-pointer 
+			  -fno-strict-aliasing 
+			  -finline-limit=300 
+			  -ffast-math 
+			  -pipe  
+													"
+									DebugValue="-g"
+									ReleaseValue="-w -fomit-frame-pointer -Os -O2"	/>
+									
+			<Macro Name="INCLUDE_PATHS" CommonValue="
+													 $(ANDROID_NDK_PATH)\sysroot\usr\include
+													 $(ANDROID_NDK_PATH)\sysroot\usr\include\$(TOOLCHAIN_PREFIX)
+													 " 
+										DebugValue=""
+										ReleaseValue=""	/>
+			
+			<Macro Name="LDLIBS" Value="" />
+			
+			<Macro Name="LDFLAGS" 	CommonValue="" 
+									DebugValue=""
+									ReleaseValue=""	/>
+							
+			<Macro Name="LINK_PATHS" Value="" />
+		</GccConfig>
+	
+		<GccConfig Name="arm64-v8a">
+	
+			<Macro Name="MAIN_PROJECT" 			Value="" />
+			<Macro Name="GENERATE_DSYM"			Value="False" />
+			<Macro Name="STRIP_DEBUG_SYMBOLS_FOR_RELEASE"	Value="True" />
+			<Macro Name="STRIP_DEBUG_SYMBOLS_FOR_DEBUG"		Value="False" />
+				
+			<Macro Name="ANDROID_NDK_PATH" 		Value="$(ANDROID_NDK_HOME)" />
+			<Macro Name="ANDROID_PLATFORM" 		Value="android-$(NATIVE_API_LEVEL)" />
+			<Macro Name="TOOLCHAIN_VERSION"		Value="4.9" />
+			<Macro Name="TOOLCHAIN_FOLDERNAME"	Value="aarch64-linux-android-$(TOOLCHAIN_VERSION)" />
+			
+			<Macro Name="TOOLCHAIN" 			Value="$(ANDROID_NDK_PATH)\toolchains\$(TOOLCHAIN_FOLDERNAME)\prebuilt\windows\bin" />
+			
+			<Macro Name="TOOLCHAIN_PREFIX"		Value="aarch64-linux-android" />
+			<Macro Name="CPP" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-g++.exe" />
+			<Macro Name="CC" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-gcc.exe" />
+			<Macro Name="LD" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-g++.exe" />
+			<Macro Name="LS" 			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-ar.exe" />
+			<Macro Name="OBJCOPY"		Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-objcopy.exe" />
+			<Macro Name="STRIP"			Value="$(TOOLCHAIN)\$(TOOLCHAIN_PREFIX)-strip.exe" />
+						
+			<Macro Name="COMPILE_CPP_COMMAND_LINE" 	Value="$(CPP) $(DEFINES) $(CFLAGS) $(INCLUDE_PATHS) -c $(SRC_FILE) -o $(OBJ_FILE)" />
+			<Macro Name="COMPILE_CC_COMMAND_LINE" 	Value="$(CC) $(DEFINES) $(CFLAGS) $(INCLUDE_PATHS) -c $(SRC_FILE) -o $(OBJ_FILE)" />
+			<Macro Name="DYNAMIC_LINK_COMMAND_LINE" Value="$(LD) -Wl,-soname,$(OUT) -shared $(OBJ_FILES) $(LDLIBS)  $(LDFLAGS) $(LINK_PATHS) -o $(OUT)" />
+			<Macro Name="STATIC_LINK_COMMAND_LINE" 	Value="$(LS) -r -s $(OUT) $(OBJ_FILES)" />
+			<Macro Name="EXE_LINK_COMMAND_LINE" 	Value="$(LD) $(OBJ_FILES) $(LDLIBS)  $(LDFLAGS) $(LINK_PATHS) -o $(OUT)" />
+			<Macro Name="DSYM_COMMAND_LINE" 		Value="$(OBJCOPY) --only-keep-debug $(INPUT) $(OUT)" />
+			<Macro Name="STRIP_COMMAND_LINE" 		Value="$(STRIP) --strip-debug --strip-unneeded $(INPUT)" />
+			
+			<Macro Name="TYPES_OF_FILES_TO_BE_COMPILED"	Value="cpp;cc;c" />
+			
+			<Macro Name="DEFINES" 	CommonValue="OS_ANDROID"
+									DebugValue="_DEBUG"
+									ReleaseValue=""	/>
+									
+			<Macro Name="CFLAGS" 	CommonValue="	-mandroid 
+			  -ffunction-sections 
+			  -funwind-tables 
+			  -fstack-protector 
+			  -fpic 
+			  -Wno-psabi 
+			  -march=armv8-a 
+			  -Wno-write-strings 
+			  -fsigned-char 
+			  -fno-exceptions 
+			  -fno-rtti 
+			  -fomit-frame-pointer 
+			  -fno-strict-aliasing 
+			  -finline-limit=300 
+			  -ffast-math 
+			  -pipe
+				-fpermissive
+													"
+				DebugValue="-g"
+				ReleaseValue="-w -fomit-frame-pointer -Os -O2"	/>
+				
+			<Macro Name="INCLUDE_PATHS" CommonValue="
+													$(ANDROID_NDK_PATH)\sysroot\usr\include
+													$(ANDROID_NDK_PATH)\sysroot\usr\include\$(TOOLCHAIN_PREFIX)
+													 "
+										DebugValue=""
+										ReleaseValue=""	/>
+			
+			<Macro Name="LDLIBS" Value="" />
+			
+			<Macro Name="LDFLAGS" 	CommonValue="" 
+									DebugValue=""
+									ReleaseValue=""	/>
+									
+			<Macro Name="LINK_PATHS" Value="" />
+		</GccConfig>
+		
+	</CommonGccConfig>
+	
+	<Project Name="kataprofiler">
+		<Ignore>
+			<Filter Name="win32" />
+		</Ignore>
+	</Project>
+	
+</Makefile>

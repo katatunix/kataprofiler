@@ -1,0 +1,6 @@
+*.user
+.vs
+Release
+Debug
+bin
+release
